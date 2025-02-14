@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz San Valentín, Luz</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe6e6;
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            overflow: hidden;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        .heart {
+            color: red;
+            font-size: 50px;
+            animation: heartbeat 1s infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        .message {
+            display: none;
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #C00000;
+        }
+        .button {
+            background: red;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .background-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .floating-item {
+            position: absolute;
+            font-size: 20px;
+            animation: float 5s linear infinite;
+        }
+        @keyframes float {
+            from { transform: translateY(100vh); opacity: 1; }
+            to { transform: translateY(-10vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-hearts"></div>
+    <div class="card">
+        <h2>Feliz San Valentín, Mi Amor!</h2>
+        <div class="heart">❤️</div>
+        <button class="button" onclick="showMessage()">Presiona aquí</button>
+        <p class="message">Eres muy especial, recuerda que estare para ti mi niña hermosa te deseo un día lleno de amor y alegría ❤️</p>
+    </div>
+    <script>
+        function showMessage() {
+            const message = document.querySelector('.message');
+            message.style.display = 'block';
+            message.style.fontWeight = 'bold';
+        }
+        
+        function createFloatingElements() {
+            const container = document.querySelector('.background-hearts');
+            const symbols = ['❤️', '🌷'];
+            for (let i = 0; i < 30; i++) {
+                let element = document.createElement('div');
+                element.classList.add('floating-item');
+                element.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+                element.style.left = Math.random() * 100 + 'vw';
+                element.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                container.appendChild(element);
+            }
+        }
+        createFloatingElements();
+    </script>
+</body>
+</html>
